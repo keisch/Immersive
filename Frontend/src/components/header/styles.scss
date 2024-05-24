@@ -1,0 +1,116 @@
+@import "../../sass/global.scss";
+
+.header {
+  z-index: 30;
+  height: 11%;
+  width: 100%;
+  background-color: $color-white-smoke;
+  position: fixed;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 2px;
+  margin-bottom: 400px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.06),
+    0 0 2px rgba(0, 0, 0, 0.07), 0 2px 2px rgba(0, 0, 0, 0.07);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.header-scrolled {
+  background-color: $color-bistre;
+}
+
+.link-container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: center;
+}
+.nav-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  &__img {
+    width: 45px;
+    border-radius: 10px;
+  }
+}
+
+.test {
+  display: none !important;
+}
+.link-nav {
+  color: black;
+  display: none;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: $font-secundary;
+  border: solid;
+  border-color: $color-green;
+  border-radius: 99px;
+  &__current {
+    background-color: $color-green;
+    opacity: 1;
+    color: white;
+  }
+  &:hover {
+    background-color: $color-green;
+    color: white;
+  }
+}
+
+.link-menu {
+  color: black;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  &__current {
+    border-bottom: solid;
+    border-color: $color-green;
+  }
+}
+
+@include laptop-to-desktop {
+  .link-nav {
+    font-size: 18px;
+  }
+}
+
+@include desktopXL {
+  .link-nav {
+    font-size: 20px;
+  }
+}
+
+@include tablet() {
+  .header {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    &__img {
+      width: 55px;
+      border-radius: 10px;
+    }
+  }
+
+  .link-nav {
+    display: flex;
+    width: 115px;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 12px 5px 12px;
+  }
+  .link-menu {
+    display: none;
+  }
+}

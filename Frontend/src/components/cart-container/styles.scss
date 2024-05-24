@@ -1,0 +1,54 @@
+@import "../../sass/global.scss";
+
+.cart-container {
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 130px 0px 10px 0px;
+  margin: 0px 16px 15px 16px;
+  border: none;
+  border-bottom: solid;
+  border-width: 2px;
+  border-color: $color-bistre;
+  &__text {
+    font-family: $font-primary;
+    color: $color-bistre;
+    font-size: x-large;
+    font-weight: bold;
+    &--item {
+      color: $color-payne-gray;
+      font-weight: 500;
+      font-size: medium;
+    }
+  }
+}
+
+.price-container{
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 16px 8px 16px;
+  &__price{
+    font-weight: bold;
+    color: $color-orange;
+  }
+}
+.subtotal-container{
+  border: none;
+  border-bottom: solid;
+  border-width: 1.5px;
+  border-color: $color-bistre;
+  padding-top: 8px;
+  padding-bottom: 16px;
+  margin: 0px 16px 0px 16px;
+
+}
+.total-container{
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 32px 8px 32px;
+  &__total{
+    font-weight: bold;
+    color: $color-orange;
+  }
+}

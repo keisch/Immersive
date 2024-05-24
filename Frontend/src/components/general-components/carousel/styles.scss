@@ -1,0 +1,122 @@
+@import "../../../sass/global.scss";
+.image-container {
+  &__img {
+    min-width: 100%;
+    border-radius: 20px;
+    max-height: 280px;
+    min-height: 280px;
+  }
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+}
+
+.embla {
+  max-width: 19rem;
+  padding-top: 20px;
+}
+
+@include tablet() {
+  .embla {
+    max-width: 48rem;
+    padding-left: 10px;
+  }
+  .embla__slide {
+    flex: 0 0 45%;
+    min-width: 0;
+    padding-left: 1rem;
+  }
+  .embla__viewport {
+    height: 350px;
+    padding-bottom: 20px;
+  }
+}
+
+.embla__viewport {
+  overflow: hidden;
+  height: auto;
+  padding-bottom: 20px;
+}
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide__img {
+  display: block;
+  max-width: 300px;
+}
+.embla__controls {
+  display: flex;
+  grid-template-columns: auto 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.embla__buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+}
+.embla__button {
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: solid;
+  border-color: #008248;
+  padding: 0;
+  margin: 0;
+  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+  width: 2rem;
+  height: 2rem;
+  z-index: 1;
+  border-radius: 50%;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: #008248;
+    color: white;
+  }
+}
+.embla__button:disabled {
+  border: solid;
+  border-color: $color-silver;
+  color: $color-silver;
+  &:hover {
+    background-color: transparent;
+    color: $color-silver;
+  }
+}
+.embla__button__svg {
+  width: 50%;
+  height: 50%;
+}
+.embla__slide {
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+}
+.embla__slide.is-snapped {
+  transform: scale(1.1) !important;
+}
+
+.embla__slide:not(.is-snapped) {
+  opacity: 0.18;
+  cursor: default;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1);
+}

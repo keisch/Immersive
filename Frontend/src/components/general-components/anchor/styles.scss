@@ -1,0 +1,35 @@
+@import "../../../sass/global.scss";
+.list-link {
+  padding: 8px 15px 10px 15px;
+  text-align: end;
+  &__text {
+    color: black;
+    font-family: $font-secundary;
+    &--current {
+      border-bottom: solid;
+      border-color: $color-green;
+    }
+    &:hover {
+      cursor: pointer;
+      border-bottom: solid;
+      border-color: $color-green;
+    }
+  }
+}
+@include laptop-to-desktop {
+  .list-link {
+    padding: 20px;
+    &__text {
+      font-size: 18px;
+    }
+  }
+}
+
+@include desktopXL {
+  .list-link {
+    padding: 30px;
+    &__text {
+      font-size: 20px;
+    }
+  }
+}

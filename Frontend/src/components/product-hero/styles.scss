@@ -1,0 +1,33 @@
+@import '../../sass/global.scss';
+
+.hero-product-details{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0.5,0.5)), url("/images/Hero-image.jpg");
+    background-size: cover;
+    padding-top: 90px;
+    padding-bottom: 30px;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    height: 45vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    &__h1{
+        font-family: $font-primary;
+        font-size: 3rem;
+        font-weight: bold;
+        color: white;
+        text-align: left;
+        &--color{
+            color:$color-safety-orange ;
+        }
+    }
+
+    &__description{
+        font-family: $font-secundary;
+        font-style: italic;
+        font-size: 1rem;
+        text-align: left;
+        color: #BBBDBD;
+    }
+}

@@ -1,0 +1,30 @@
+.container-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: $color-pearl;
+
+    border-radius: 10%;
+    padding: 30px;
+    align-items: center;
+    &__title{
+        font-family: $font-primary;
+        color: $color-bistre;
+        margin: 20px;
+        font-size: xx-large;
+        font-weight: bold;   
+    }
+}
+
+.container-shipping{
+    &__text{
+        font-family: $font-secundary;
+        font-size: medium;
+    }
+    &__input{
+        width: 100%;
+        height: 30px;
+        border-radius: 10px;
+    }
+
+}
