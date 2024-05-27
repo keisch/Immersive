@@ -7,7 +7,11 @@ export default function Hero() {
       <div id="home" className="hero">
         <h1 className="hero__h1">
           Start your day with a great cup of&nbsp;
-          <Link to={"/products"} className="hero__h1--color">
+          <Link
+            to={"/products"}
+            className="hero__h1--color"
+            aria-label="link-products"
+          >
             coffee
           </Link>
         </h1>

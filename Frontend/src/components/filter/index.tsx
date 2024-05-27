@@ -11,8 +11,10 @@ const FiltersProducts: React.FC<FiltersProductsProps> = ({
   onSelectCategory,
 }) => {
   return (
-    <div className="bg-bistre rounded-md p-4 ">
-      <span className="color-[#30221C]">Selected Categories</span>
+    <div className="bg-bistre rounded-md pt-4  ">
+      <p className="text-white pb-3 text-xl font-semibold">
+        Selected Categories
+      </p>
       <CheckboxGroup
         orientation="horizontal"
         color="success"
@@ -22,7 +24,7 @@ const FiltersProducts: React.FC<FiltersProductsProps> = ({
       >
         {categories.map((category, index) => (
           <Checkbox key={index} value={category}>
-            {category}
+            <span className="text-white">{category}</span>
           </Checkbox>
         ))}
       </CheckboxGroup>

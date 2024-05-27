@@ -48,7 +48,7 @@ const ListPagination = ({ pagination }: IProps) => {
         className="pagination-button"
         aria-label="Previous button"
       >
-        <FontAwesomeIcon icon={faChevronLeft} />
+        <FontAwesomeIcon icon={faChevronLeft} color="white" />
       </button>
       <div className="page-numbers">{renderPageNumbers()}</div>
       <button
@@ -57,7 +57,7 @@ const ListPagination = ({ pagination }: IProps) => {
         className="pagination-button"
         aria-label="Next button"
       >
-        <FontAwesomeIcon icon={faChevronRight} />
+        <FontAwesomeIcon icon={faChevronRight} color="white" />
       </button>
     </div>
   );

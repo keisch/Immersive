@@ -21,14 +21,6 @@ public class Role {
     @Column(nullable = false)
     private String description;
 
-//    @CreationTimestamp
-//    @Column(updatable = false, name = "created_at")
-//    private Date createdAt;
-//
-//    @UpdateTimestamp
-//    @Column(name = "updated_at")
-//    private Date updatedAt;
-
     public Integer getId() {
         return id;
     }
@@ -50,24 +42,6 @@ public class Role {
         this.description = description;
         return this;
     }
-
-//    public Date getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public Role setCreatedAt(Date createdAt) {
-//        this.createdAt = createdAt;
-//        return this;
-//    }
-//
-//    public Date getUpdatedAt() {
-//        return updatedAt;
-//    }
-//
-//    public Role setUpdatedAt(Date updatedAt) {
-//        this.updatedAt = updatedAt;
-//        return this;
-//    }
 
     @Override
     public String toString() {

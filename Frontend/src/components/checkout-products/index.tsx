@@ -1,45 +1,28 @@
-import { useRecoilState } from "recoil";
-import { cart } from "../../states/cart-state";
-import { useEffect } from "react";
-import IProduct from "../../models/product/product-interface";
 import "./styles.scss";
+import ICartItem from "../../models/cart/cart-interface";
 
-export default function CheckOutProducts() {
-  const [cartList, setCartList] = useRecoilState(cart);
-
-  const serializedCart = localStorage.getItem("cart");
-  const getCartData = () => {
-    if (serializedCart) {
-      const myObject: IProduct[] = JSON.parse(serializedCart);
-      setCartList(myObject);
-      console.log(myObject);
-    } else {
-      console.log("No object found in local storage");
-    }
-  };
-
-  useEffect(() => {
-    getCartData();
-  }, []);
-  return (
-    <>
-      {cartList.map((element: IProduct) => (
-        <div className="product-container">
-          <img
-            className="product-container__img"
-            src={element.image}
-            alt="Product Image Cart"
-          />
-          <div className="product-data-container">
-            <div className="product-data">
-              <h2 className="product-data__name">{element.name}</h2>
-              <h3 className="product-data__price">
-                ${(element.price * element.quantity).toFixed(2)}
-              </h3>
-            </div>
-          </div>
-        </div>
-      ))}
-    </>
-  );
+interface CartProductsProps {
+  item: ICartItem;
 }
+const CheckOutProducts: React.FC<CartProductsProps> = ({ item }) => {
+  return (
+    <div className="bg-[#34373a] max-w-[100%] m-4 p-3 md:mx-10 rounded-lg overflow-hidden shadow-lg flex justify-between items-center">
+      <p className="text-white text-sm font-bold py-1 px-3 bg-[#212325] rounded-lg">
+        {item.quantity}
+      </p>
+      <div className="relative flex-1 mx-3 overflow-hidden">
+        <a
+          className="text-white text-md font-semibold font-[Open Sans] truncate ... block"
+          data-tooltip-id={item.products.name}
+          data-tooltip-content={item.products.name}
+        >
+          {item.products.name}
+        </a>
+      </div>
+      <h2 className="font-bold text-md text-[#00d878]">
+        ${(item.products.price * item.quantity).toFixed(2)}
+      </h2>
+    </div>
+  );
+};
+export default CheckOutProducts;

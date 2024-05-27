@@ -48,7 +48,7 @@
     }
     &--signin {
       text-align: center;
-      color: rgb(0, 98, 65);
+      color: $color-green-lime;
       font-family: $font-secundary;
       background: transparent;
       font-size: large;
@@ -58,7 +58,7 @@
       border-radius: 99px;
       margin: 10px;
       &:hover {
-        background-color: #dcdbd8;
+        background-color: $color-fondo-card;
         transition: 0.3s ease-in-out;
       }
     }
@@ -71,10 +71,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: $color-white-smoke;
+  background-color: $color-fondo-navbar-dark;
   justify-content: center;
   &__h1 {
-    color: black;
+    color: white;
     font-family: $font-secundary;
     font-size: 3rem;
     font-weight: bold;

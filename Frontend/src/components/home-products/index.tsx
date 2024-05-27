@@ -1,15 +1,41 @@
 import EmblaCarousel from "../general-components/carousel";
 import "./styles.scss";
-import productsList from "../../database/products";
 import { EmblaOptionsType } from "embla-carousel";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useRecoilState } from "recoil";
+import { cart } from "../../states/cart-state";
+import getShoppingCart from "../../utilities/ShoppingCart/getItem";
+import getWishList from "../../utilities/WishList/getWishLisrItem";
+import { wish } from "../../states/wish-state";
 
 export default function HomeProducts() {
   const options: EmblaOptionsType = { loop: false };
+  const [, setCartList] = useRecoilState(cart);
+  const [wishList, setWishList] = useRecoilState(wish);
+  const [productsList, setProductsList] = useState<String[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/products/images")
+      .then((response) => {
+        setProductsList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    getShoppingCart(setCartList);
+    getWishList(setWishList);
+  }, []);
+
   return (
     <>
       <div className="carousel-container">
         <h2 className="carousel-container__text"> FEATURE PRODUCTS</h2>
-        {productsList.filter((x) => x.featured).length === 0 ? (
+        {productsList.length === 0 ? (
           <>
             <p>No featured products available</p>
             <img
@@ -20,7 +46,7 @@ export default function HomeProducts() {
           </>
         ) : (
           <EmblaCarousel
-            products={productsList.filter((x) => x.featured)}
+            products={productsList}
             options={options}
           ></EmblaCarousel>
         )}

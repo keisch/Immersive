@@ -37,10 +37,14 @@ const PriceSlider: React.FC<PriceSliderProps> = ({
           roundPriceDownToTen(minPrice),
           roundPriceUpToTen(maxPrice),
         ]}
-        // color={"warning"}
         formatOptions={{ style: "currency", currency: "USD" }}
-        className="p-4"
-        classNames={{ filler: "bg-[#008248]", thumb: "bg-[#008248]" }}
+        className="pt-4"
+        classNames={{
+          label: "text-white",
+          labelWrapper: "text-white",
+          filler: "bg-[#008248]",
+          thumb: "bg-[#008248]",
+        }}
         onChange={(values: number[] | number) => {
           if (!Array.isArray(values)) {
             handleSelectedPriceRange([values, values]);

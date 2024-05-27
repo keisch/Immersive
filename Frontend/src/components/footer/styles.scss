@@ -2,16 +2,14 @@
 
 .footer {
   height: auto;
-  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1), 0 -2px 2px rgba(0, 0, 0, 0.06),
-    0 0 2px rgba(0, 0, 0, 0.07);
-  background-color: $color-white-smoke;
+  box-shadow: 0 -1px 2px rgba(255, 255, 255, 0.15),
+    0 -2px 4px rgba(255, 255, 255, 0.1), 0 -3px 6px rgba(255, 255, 255, 0.05);
+  background-color: $color-fondo-navbar-dark;
   width: 100%;
   display: flex;
   z-index: 3000;
   position: relative;
-  border-top: solid;
-  border-width: 1px;
-  border-color: $color-silver;
+
   justify-content: space-between;
   flex-direction: column;
   padding-left: 20px;
@@ -60,7 +58,7 @@
   &__text {
     margin-left: 15px;
     font-weight: 400;
-    color: rgb(65, 64, 64);
+    color: #8f8f8f;
     margin-right: 15px;
     text-align: center;
     font-family: $font-secundary;

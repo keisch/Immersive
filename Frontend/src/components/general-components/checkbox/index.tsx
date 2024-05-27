@@ -17,13 +17,13 @@ const CheckboxFeaturedProd: React.FC<CheckboxFeaturedProdProps> = ({
   };
 
   return (
-    <div className="px-4">
+    <div className="">
       <Checkbox
         isSelected={feature}
         color="success"
         onValueChange={handleIsSelected}
       >
-        Featured Products
+        <span className="text-white">Only Featured Products</span>
       </Checkbox>
     </div>
   );

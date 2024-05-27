@@ -1,6 +1,90 @@
-@import "../../sass/global.scss";
+// @import "../../sass/global.scss";
 
-.cart-container {
+// .cart-container {
+//   height: auto;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: 130px 0px 10px 0px;
+//   margin: 0px 16px 15px 16px;
+//   border: none;
+//   border-bottom: solid;
+//   border-width: 2px;
+//   border-color: $color-bistre;
+//   &__text {
+//     font-family: $font-primary;
+//     color: $color-bistre;
+//     font-size: x-large;
+//     font-weight: bold;
+//     &--item {
+//       color: $color-payne-gray;
+//       font-weight: 500;
+//       font-size: medium;
+//     }
+//   }
+// }
+
+// .price-container{
+//   display: flex;
+//   justify-content: space-between;
+//   margin: 8px 16px 8px 16px;
+//   &__price{
+//     font-weight: bold;
+//     color: $color-orange;
+//   }
+// }
+// .subtotal-container{
+//   border: none;
+//   border-bottom: solid;
+//   border-width: 1.5px;
+//   border-color: $color-bistre;
+//   padding-top: 8px;
+//   padding-bottom: 16px;
+//   margin: 0px 16px 0px 16px;
+
+// }
+// .total-container{
+//   display: flex;
+//   justify-content: space-between;
+//   margin: 8px 32px 8px 32px;
+//   &__total{
+//     font-weight: bold;
+//     color: $color-orange;
+//   }
+// }
+
+// .container-form{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     background-color: $color-pearl;
+
+//     border-radius: 10%;
+//     padding: 30px;
+//     align-items: center;
+//     &__title{
+//         font-family: $font-primary;
+//         color: $color-bistre;
+//         margin: 20px;
+//         font-size: xx-large;
+//         font-weight: bold;
+//     }
+// }
+
+// .container-shipping{
+//     &__text{
+//         font-family: $font-secundary;
+//         font-size: medium;
+//     }
+//     &__input{
+//         width: 100%;
+//         height: 30px;
+//         border-radius: 10px;
+//     }
+
+// }
+
+.checkout-container {
   height: auto;
   display: flex;
   justify-content: space-between;
@@ -10,76 +94,61 @@
   border: none;
   border-bottom: solid;
   border-width: 2px;
-  border-color: $color-bistre;
+  border-color: $color-green;
   &__text {
-    font-family: $font-primary;
-    color: $color-bistre;
+    font-family: $font-title;
+    color: $color-green-lime;
     font-size: x-large;
     font-weight: bold;
     &--item {
-      color: $color-payne-gray;
+      color: $color-white-smoke;
       font-weight: 500;
       font-size: medium;
     }
   }
 }
-
-.price-container{
+.checkout-price-container {
   display: flex;
   justify-content: space-between;
   margin: 8px 16px 8px 16px;
-  &__price{
+  &__price {
     font-weight: bold;
-    color: $color-orange;
+    color: white;
   }
 }
-.subtotal-container{
+.checkout-subtotal-container {
   border: none;
   border-bottom: solid;
   border-width: 1.5px;
-  border-color: $color-bistre;
+  border-color: $color-green;
   padding-top: 8px;
   padding-bottom: 16px;
   margin: 0px 16px 0px 16px;
-
 }
-.total-container{
+.checkout-total-container {
   display: flex;
   justify-content: space-between;
   margin: 8px 32px 8px 32px;
-  &__total{
+  &__total {
     font-weight: bold;
-    color: $color-orange;
+    color: $color-green-lime;
   }
 }
 
-.container-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: $color-pearl;
-
-    border-radius: 10%;
-    padding: 30px;
-    align-items: center;
-    &__title{
-        font-family: $font-primary;
-        color: $color-bistre;
-        margin: 20px;
-        font-size: xx-large;
-        font-weight: bold;   
-    }
+@include tablet {
+  .checkout-container {
+    margin: 0px 40px 15px 40px;
+  }
+  .checkout-subtotal-container {
+    margin: 0px 40px 0px 40px;
+  }
+  .checkout-total-container {
+    margin: 0px 56px 0px 56px;
+  }
 }
 
-.container-shipping{
-    &__text{
-        font-family: $font-secundary;
-        font-size: medium;
-    }
-    &__input{
-        width: 100%;
-        height: 30px;
-        border-radius: 10px;
-    }
-
+@include desktopXL {
+  .checkout-container {
+    padding-top: 150px;
+  }
 }

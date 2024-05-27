@@ -1,7 +1,11 @@
 import { atom } from "recoil";
-import IProduct from "../models/product/product-interface";
+import ICartItem from "../models/cart/cart-interface";
+import { recoilPersist } from "recoil-persist";
 
-export const cart = atom({
+const { persistAtom } = recoilPersist();
+
+export const cart = atom<ICartItem[]>({
   key: "cart",
-  default: [] as IProduct[],
+  default: [] as ICartItem[],
+  effects_UNSTABLE: [persistAtom],
 });

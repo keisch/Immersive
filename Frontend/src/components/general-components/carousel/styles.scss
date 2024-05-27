@@ -84,7 +84,7 @@
   height: 2rem;
   z-index: 1;
   border-radius: 50%;
-  color: black;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,7 +115,7 @@
 }
 
 .embla__slide:not(.is-snapped) {
-  opacity: 0.18;
+  opacity: 0.4;
   cursor: default;
   transition: transform 0.3s ease-in-out;
   transform: scale(1);

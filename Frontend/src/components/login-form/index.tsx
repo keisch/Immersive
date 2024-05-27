@@ -1,11 +1,12 @@
 import { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
-import Modal from "../general-components/modal/"; // Asegúrate de importar el componente Modal desde la ubicación correcta
+import Modal from "../general-components/modal/";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles.scss";
 import { useRecoilState } from "recoil";
 import { isUser } from "../../states/user-state";
+import axios from "axios";
 
 const LogInForm = () => {
   const [email, setEmail] = useState<string>("");
@@ -39,7 +40,25 @@ const LogInForm = () => {
       return;
     } else {
       setUser(true);
-      navigate("/");
+
+      axios
+        .post("http://localhost:8080/auth/login", {
+          email: email,
+          password: password,
+        })
+        .then(function (response) {
+          const { token } = response.data;
+          localStorage.setItem("token", token);
+          navigate("/");
+        })
+        .catch(function (error) {
+          if (error.response) {
+            if (error.response.status === 401) {
+              setErrorMessage("Wrong Email or Password");
+              setShowErrorModal(true);
+            }
+          }
+        });
     }
   };
 

@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRecoilState } from "recoil";
 import { cart } from "../../states/cart-state";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import putItem from "../../utilities/ShoppingCart/putItem";
+import postItem from "../../utilities/ShoppingCart/postItem";
 
 interface IProps {
   product?: IProduct;
@@ -20,12 +22,17 @@ export default function ProductDetailsComponent({ product }: IProps) {
 
   const [cartList, setCartList] = useRecoilState(cart);
   // prettier-ignore
-  const addToCart = (element: IProduct) => {
-    if (cartList.length == 0 || cartList.every((elementInCart: IProduct) => element.id != elementInCart.id)==true) {
-      setCartList([...cartList, element]);
+
+  const addToCart = (element : IProduct) => {
+    const existingItem = cartList.find(item => item.products.id === element.id);
+    if (existingItem){
+      putItem(existingItem, existingItem.quantity+1 ,setCartList)
     }
-    addProduct(element.id)
-  };
+    else{
+      postItem(element,setCartList)
+    }
+    notification()
+  }
 
   const notification = () => {
     toast("Item added to cart", {
@@ -33,25 +40,10 @@ export default function ProductDetailsComponent({ product }: IProps) {
     });
   };
 
-  const addProduct = (element: number) => {
-    if (element) {
-      setCartList((prevCartList: IProduct[]) =>
-        prevCartList.map((cartProduct) => {
-          if (cartProduct.id == element) {
-            return { ...cartProduct, quantity: cartProduct.quantity + 1 };
-          } else {
-            return cartProduct;
-          }
-        })
-      );
-    }
-    notification();
-  };
-
   return (
     <div id="product-details" className="product-details">
       <img
-        src={product.image}
+        src={product.img}
         alt="Product Details"
         className="product-details__img"
       />
@@ -66,7 +58,9 @@ export default function ProductDetailsComponent({ product }: IProps) {
           <p className="product-details__ul--price">Price: ${product.price}</p>
         </li>
         <li>
-          <p className="product-details__ul--description">{product.summary}</p>
+          <p className="product-details__ul--description">
+            {product.description}
+          </p>
         </li>
         <li>
           <button

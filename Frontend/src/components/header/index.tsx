@@ -8,14 +8,17 @@ import Anchor from "../general-components/anchor";
 import { useRecoilState } from "recoil";
 import { isUser } from "../../states/user-state";
 import { isMenu } from "../../states/menu-state";
+import { cart } from "../../states/cart-state";
 
 function Header() {
   const [user, setUser] = useRecoilState(isUser);
   const [isMenuOpen, setIsMenuOpen] = useRecoilState(isMenu);
+  const [cartList] = useRecoilState(cart);
   const navRef = useRef<HTMLAnchorElement>(null);
   const currentPage = useLocation();
   const { pathname } = currentPage;
   navRef.current?.setAttribute("aria-current", "");
+  const totalItems = cartList.reduce((total, item) => total + item.quantity, 0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -68,43 +71,19 @@ function Header() {
       }
     } else {
       return (
-        <button id="logout" className="link-nav" onClick={() => setUser(false)}>
+        <button
+          id="logout"
+          className="link-nav"
+          onClick={() => {
+            setUser(false);
+            localStorage.setItem("token", "");
+          }}
+        >
           Log Out
         </button>
       );
     }
   };
-
-  // useEffect(() => {
-  //   function listenerLogin() {
-  //     if (pathname === "/login") {
-  //       const navbar = document.querySelector(".header");
-  //       if (navbar) {
-  //         // navbar.classList.add("header-scrolled");
-  //       }
-  //     }
-  //   }
-  //   listenerLogin();
-  // }, [pathname]);
-
-  // useEffect(() => {
-  //   function listenerScroll() {
-  //     const navbar = document.querySelector(".header");
-  //     if (navbar && pathname !== "/login") {
-  //       console.log(pathname != "/login");
-  //       if (isMenuOpen) {
-  //         navbar.classList.add("header-scrolled");
-  //       } else if (window.scrollY > 100 && !isMenuOpen) {
-  //         navbar.classList.add("header-scrolled");
-  //       } else {
-  //         navbar.classList.remove("header-scrolled");
-  //       }
-  //     }
-  //   }
-
-  //   window.addEventListener("scroll", listenerScroll);
-  //   listenerScroll();
-  // }, [isMenuOpen, window.scrollY, pathname]);
 
   return (
     <>
@@ -145,7 +124,11 @@ function Header() {
                 id="orderDetails"
                 text={"Order Details"}
               ></Anchor>
-              <Anchor link={"/"} id="about" text={"About"}></Anchor>
+              <Anchor
+                link={"/wishList"}
+                id="wishList"
+                text={"Wish List"}
+              ></Anchor>
               <Anchor link={"/"} id="contact" text={"Contact"}></Anchor>
               {pathname === "/signup" ? (
                 <Anchor
@@ -164,11 +147,20 @@ function Header() {
               )}
             </ul>
           </div>
-          <Link to={"/cart"}>
-            <FontAwesomeIcon
-              className="hidden md:flex text-[#008248] text-2xl pr-8 cursor-pointer "
-              icon={faCartShopping}
-            />
+          <Link to="/cart" aria-label="cart">
+            {pathname !== "/cart" ? (
+              <div className="flex relative mt-3 pr-14 md:pr-6">
+                <p className="text-white absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 pr-[138px] pb-4 md:pr-[72px]">
+                  {totalItems}
+                </p>
+                <FontAwesomeIcon
+                  className="text-[#00D878] text-2xl cursor-pointer"
+                  icon={faCartShopping}
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </Link>
           {renderLoginButton()}
         </nav>

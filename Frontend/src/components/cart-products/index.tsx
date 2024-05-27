@@ -1,109 +1,66 @@
-import { useRecoilState } from "recoil";
-import { cart } from "../../states/cart-state";
-import { useEffect } from "react";
-import IProduct from "../../models/product/product-interface";
-import "./styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import ICartItem from "../../models/cart/cart-interface";
+import deleteItem from "../../utilities/ShoppingCart/deleteItem";
+import { useRecoilState } from "recoil";
+import { cart } from "../../states/cart-state";
 
-export default function CartProducts() {
-  const [cartList, setCartList] = useRecoilState(cart);
+interface CartProductsProps {
+  item: ICartItem;
+  addItem: (item: ICartItem) => void;
+  removeItem: (item: ICartItem) => void;
+}
 
-  const serializedCart = localStorage.getItem("Cart");
-  const getCartData = () => {
-    if (serializedCart) {
-      const myObject: IProduct[] = JSON.parse(serializedCart);
-      setCartList(myObject);
-      console.log(myObject);
-    } else {
-      console.log("No object found in local storage");
-    }
-  };
+const CartProducts: React.FC<CartProductsProps> = ({
+  item,
+  addItem,
+  removeItem,
+}) => {
+  const [, setCartList] = useRecoilState(cart);
 
-  const addProduct = (element: number) => {
-    if (element) {
-      setCartList((prevCartList: IProduct[]) =>
-        prevCartList.map((cartProduct) => {
-          if (cartProduct.id == element) {
-            return { ...cartProduct, quantity: cartProduct.quantity + 1 };
-          } else {
-            return cartProduct;
-          }
-        })
-      );
-    }
-  };
-
-  const removeProduct = (element: number) => {
-    if (element) {
-      setCartList((prevCartList: IProduct[]) =>
-        prevCartList
-          .map((cartProduct) => {
-            if (cartProduct.id == element) {
-              const newQuantity = cartProduct.quantity - 1;
-              return { ...cartProduct, quantity: newQuantity };
-            } else {
-              return cartProduct;
-            }
-          })
-          .filter((cartProduct) => cartProduct.quantity > 0)
-      );
-    }
-  };
-  const deleteProduct = (element: number) => {
-    if (element) {
-      setCartList((prevCartList: IProduct[]) =>
-        prevCartList.filter((cartProduct) => cartProduct.id !== element)
-      );
-    }
-  };
-
-  useEffect(() => {
-    getCartData();
-  }, []);
   return (
-    <>
-      {cartList.map((element: IProduct) => (
-        <div className="product-container">
-          <img
-            className="product-container__img"
-            src={element.image}
-            alt="Product Image Cart"
-          />
-          <div className="product-data-container">
-            <div className="product-data">
-              <h2 className="product-data__name">{element.name}</h2>
-              <h3 className="product-data__price">
-                ${(element.price * element.quantity).toFixed(2)}
-              </h3>
-              <div className="buttons-container">
-                <button
-                  className="buttons-container__btn"
-                  onClick={() => removeProduct(element.id)}
-                >
-                  -
-                </button>
-                <p className="buttons-container__quantity">
-                  {element.quantity}
-                </p>
-                <button
-                  className="buttons-container__btn"
-                  onClick={() => addProduct(element.id)}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-            <div className="trash-container">
-              <FontAwesomeIcon
-                className="trash-container__img"
-                icon={faTrashCan}
-                onClick={() => deleteProduct(element.id)}
-              />
-            </div>
+    <div className="bg-[#34373a] max-w-[100%] m-4 md:mx-10 rounded-lg overflow-hidden shadow-lg flex flex-col sm:flex-row">
+      <img
+        className="m-2 rounded-lg sm:h-[200px] sm:w-[200px] object-cover"
+        src={item.products.img}
+        alt="Product Image Cart"
+      />
+      <div className="w-full px-4 py-2 flex flex-col justify-between min-h-36">
+        <div className="flex flex-col justify-center pl-2.5 h-25">
+          <h2 className="text-white text-2xl font-semibold font-[Open Sans]">
+            {item.products.name}
+          </h2>
+          <h3 className="hidden  text-lg text-[#8f8f8f] sm:block">
+            {item.products.summary}
+          </h3>
+          <h3 className="font-bold text-lg text-[#00d878]">
+            ${(item.products.price * item.quantity).toFixed(2)}
+          </h3>
+          <div className="flex items-center">
+            <button
+              className="pr-[10px] pl-[10px] pb-[2px] bg-[#212325] text-white rounded-[10px]"
+              onClick={() => removeItem(item)}
+            >
+              -
+            </button>
+            <p className="text-white p-2">{item.quantity}</p>
+            <button
+              className="pr-[10px] pl-[10px] pb-[2px] bg-[#212325] text-white rounded-[10px]"
+              onClick={() => addItem(item)}
+            >
+              +
+            </button>
           </div>
         </div>
-      ))}
-    </>
+        <div className="flex w-auto text-right justify-end">
+          <FontAwesomeIcon
+            className="text-white bg-[#008248] p-2 rounded-lg text-lg"
+            icon={faTrashCan}
+            onClick={() => deleteItem(item, setCartList)}
+          />
+        </div>
+      </div>
+    </div>
   );
-}
+};
+export default CartProducts;

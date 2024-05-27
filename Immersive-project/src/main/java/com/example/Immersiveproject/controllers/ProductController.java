@@ -1,8 +1,10 @@
 package com.example.Immersiveproject.controllers;
 
+import com.example.Immersiveproject.dtos.ProductImagesDto;
 import com.example.Immersiveproject.dtos.ProductListCategoryDto;
 import com.example.Immersiveproject.dtos.ProductListDto;
 import com.example.Immersiveproject.dtos.ProductListPricesDto;
+import com.example.Immersiveproject.entities.Products;
 import com.example.Immersiveproject.services.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,6 +42,18 @@ public class ProductController {
         Pageable pageable = PageRequest.of(page, size);
         Page<ProductListDto> productPage = productService.getProductFilterList(name, categories, featured, min, max, pageable);
         return ResponseEntity.ok(productPage);
+    }
+
+    @GetMapping("/details")
+    public Products productDetails(@RequestParam Integer productId){
+        return productService.getProductDetails(productId);
+
+    }
+
+    @GetMapping("/images")
+    public List<ProductImagesDto> productDetails(){
+        return productService.getImages();
+
     }
 
     @GetMapping("/categoryFilter")
