@@ -11,10 +11,6 @@ public class OrderHistory {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User user;
-
-    @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private Products products;
 
@@ -25,24 +21,12 @@ public class OrderHistory {
     @JoinColumn(name = "orderForm_id", referencedColumnName = "id", nullable = false)
     private OrderForm orderForm;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "state_id", referencedColumnName = "id", nullable = false)
-    private State state;
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Products getProducts() {
@@ -69,11 +53,4 @@ public class OrderHistory {
         this.orderForm = orderForm;
     }
 
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
 }

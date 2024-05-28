@@ -42,7 +42,6 @@ public class SecurityConfiguration {
                                          new AntPathRequestMatcher("/products/details","GET"),
                                          new AntPathRequestMatcher("/products/images","GET"),
                                          new AntPathRequestMatcher("/products/prices","GET"))
-
                         .permitAll() // Allow POST requests to /user without authentication
                         .anyRequest().authenticated() // Ensures all requests are authenticated.
                 )

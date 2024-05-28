@@ -21,7 +21,7 @@ const postRequest = (
         },
       }
     )
-    .then(function (response) {
+    .then(function () {
       getItem(setCartList);
     })
     .catch(function (error) {

@@ -2,6 +2,8 @@ package com.example.Immersiveproject.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Table(name = "orderForm")
 @Entity
 public class OrderForm {
@@ -36,6 +38,21 @@ public class OrderForm {
 
     @Column(nullable = false)
     private Integer cardCVV;
+
+    @Column(nullable = false)
+    private Integer totalPrice;
+
+    @Column(nullable = false)
+    private String date;
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "state_id", referencedColumnName = "id", nullable = false)
+    private State state;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private User user;
+
 
     public Integer getId() {
         return id;
@@ -115,5 +132,37 @@ public class OrderForm {
 
     public void setCardCVV(Integer cardCVV) {
         this.cardCVV = cardCVV;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public Integer getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

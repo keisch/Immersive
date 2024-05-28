@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import IAnchor from "../../../models/anchor/anchor-interface";
 import "./styles.scss";
 import { useRecoilState } from "recoil";
@@ -9,7 +9,7 @@ import { isMenu } from "../../../states/menu-state";
 export default function Anchor(props: IAnchor) {
   const navRef = useRef<HTMLAnchorElement>(null);
   navRef.current?.setAttribute("aria-current", "");
-  const [feature, setIsFeature] = useRecoilState(isFeature);
+  const [, setIsFeature] = useRecoilState(isFeature);
   const [isMenuOpen, setIsMenuOpen] = useRecoilState(isMenu);
 
   return (

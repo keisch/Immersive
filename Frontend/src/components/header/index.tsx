@@ -9,9 +9,11 @@ import { useRecoilState } from "recoil";
 import { isUser } from "../../states/user-state";
 import { isMenu } from "../../states/menu-state";
 import { cart } from "../../states/cart-state";
+import { isRolUser } from "../../states/roleUser";
 
 function Header() {
   const [user, setUser] = useRecoilState(isUser);
+  const [admin, setAdmin] = useRecoilState(isRolUser);
   const [isMenuOpen, setIsMenuOpen] = useRecoilState(isMenu);
   const [cartList] = useRecoilState(cart);
   const navRef = useRef<HTMLAnchorElement>(null);
@@ -20,6 +22,7 @@ function Header() {
   navRef.current?.setAttribute("aria-current", "");
   const totalItems = cartList.reduce((total, item) => total + item.quantity, 0);
 
+  console.log("admin", admin);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -41,7 +44,7 @@ function Header() {
         loginMenu?.classList.remove("link-menu__current");
         break;
 
-      case "/login":
+      case "/signin":
         login?.classList.add("link-nav__current");
         loginMenu?.classList.add("link-menu__current");
         products?.classList.remove("list-link__text--current");
@@ -58,7 +61,7 @@ function Header() {
     if (user == false) {
       if (pathname != "/signup") {
         return (
-          <Link to="/login" id="signDesktop" className="link-nav">
+          <Link to="/signin" id="signDesktop" className="link-nav">
             Sign In
           </Link>
         );
@@ -76,6 +79,7 @@ function Header() {
           className="link-nav"
           onClick={() => {
             setUser(false);
+            setAdmin(false);
             localStorage.setItem("token", "");
           }}
         >
@@ -107,10 +111,8 @@ function Header() {
             onClick={toggleMenu}
           />
           <div
-            className={`duration-400 top-full min-h-screen md:min-h-[45px] md:static absolute w-1/2 right-0 md:w-full flex justify-center items-start md:md:items-center ${
-              isMenuOpen
-                ? "bg-gradient-to-b from-[#FDFEFE] from-30% via-[#008248] via-50% to-[#008248] to-70% md:w-auto flex "
-                : "-right-[112%]"
+            className={`absolute md:static right-0 w-1/2 md:w-full top-full min-h-screen md:min-h-[45px] flex items-start md:items-center justify-center transition duration-0 ${
+              isMenuOpen ? "bg-[#212325] flex" : "-right-96"
             }`}
           >
             <ul className="pt-6 md:bg-transparent flex md:flex-row md:pt-0  justify-center flex-col md:items-start w-full">
@@ -120,16 +122,24 @@ function Header() {
                 text={"Products"}
               ></Anchor>
               <Anchor
-                link={"/"}
+                link={"/orders"}
                 id="orderDetails"
-                text={"Order Details"}
+                text={"Order History"}
               ></Anchor>
               <Anchor
                 link={"/wishList"}
                 id="wishList"
                 text={"Wish List"}
               ></Anchor>
-              <Anchor link={"/"} id="contact" text={"Contact"}></Anchor>
+              {admin == true ? (
+                <Anchor
+                  link={"/adminDashboard"}
+                  id="adminDashboard"
+                  text={"Admin Dashboard"}
+                ></Anchor>
+              ) : (
+                ""
+              )}
               {pathname === "/signup" ? (
                 <Anchor
                   className="link-menu"
@@ -149,8 +159,8 @@ function Header() {
           </div>
           <Link to="/cart" aria-label="cart">
             {pathname !== "/cart" ? (
-              <div className="flex relative mt-3 pr-14 md:pr-6">
-                <p className="text-white absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 pr-[138px] pb-4 md:pr-[72px]">
+              <div className="flex relative mt-1 pt-2 mr-14 md:mr-7">
+                <p className="text-white absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 mr-[12px] mb-4">
                   {totalItems}
                 </p>
                 <FontAwesomeIcon

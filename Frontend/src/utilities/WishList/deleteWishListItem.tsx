@@ -2,7 +2,6 @@ import axios from "axios";
 import ICartItem from "../../models/cart/cart-interface";
 import URL_LOCAL_BACKEND from "../constant/constants";
 import getWishList from "./getWishLisrItem";
-import IProduct from "../../models/product/product-interface";
 
 const deleteWishListItem = (
   setWishList: (item: ICartItem[]) => void,

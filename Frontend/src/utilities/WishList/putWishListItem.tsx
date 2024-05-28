@@ -21,7 +21,7 @@ const putWishListRequest = (
         },
       }
     )
-    .then(function (response) {
+    .then(function () {
       getWishList(setWishList);
     })
     .catch(function (error) {

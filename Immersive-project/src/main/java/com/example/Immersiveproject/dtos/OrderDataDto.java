@@ -15,6 +15,7 @@ public class OrderDataDto {
     private String cardHolderName;
     private String cardExpiryDate;
     private Integer cardCVV;
+    private Integer totalPrice;
 
     public String getAddress1() {
         return address1;
@@ -86,5 +87,13 @@ public class OrderDataDto {
 
     public void setCardCVV(Integer cardCVV) {
         this.cardCVV = cardCVV;
+    }
+
+    public Integer getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

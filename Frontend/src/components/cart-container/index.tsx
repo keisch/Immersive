@@ -55,12 +55,12 @@ export default function CartContainer() {
               />
             ))
           ) : (
-            <div className="min-h-[80vh] flex flex-col  justify-center items-center min-w-full">
-              <p className="text-white text-xl font-normal p-8 lg:text-3xl ">
-                There are no products in the cart.
+            <div className="flex flex-col  justify-center items-center ">
+              <p className="text-white text-xl font-normal p-8">
+                There are no products in the WishList.
               </p>
               <img
-                className="w-[100px] sm:w-[200px] md:w-[300px] lg:w-[300px]"
+                className="w-[120px]"
                 src="images/errorC.png"
                 alt="No product match"
               />

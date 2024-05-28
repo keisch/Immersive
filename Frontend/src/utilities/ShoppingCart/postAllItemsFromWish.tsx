@@ -14,7 +14,7 @@ const postAllRequestFromWish = (
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .then(function (response) {
+    .then(function () {
       getItem(setCartList);
       getWishList(setWishList);
     })

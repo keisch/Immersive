@@ -1,9 +1,6 @@
 package com.example.Immersiveproject.services;
 
-import com.example.Immersiveproject.dtos.ProductImagesDto;
-import com.example.Immersiveproject.dtos.ProductListCategoryDto;
-import com.example.Immersiveproject.dtos.ProductListDto;
-import com.example.Immersiveproject.dtos.ProductListPricesDto;
+import com.example.Immersiveproject.dtos.*;
 import com.example.Immersiveproject.entities.Products;
 import com.example.Immersiveproject.repositories.ProductRepository;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +21,11 @@ public class ProductService {
     private ModelMapper modelMapper;
 
     public ProductService(ProductRepository productRepository){this.productRepository = productRepository;}
+
+    public Products addProduct(CreateProductDto createProductDto) {
+        Products product = modelMapper.map(createProductDto, Products.class);
+        return productRepository.save(product);
+    }
 
     public List<ProductListDto> getProductsList(){
         List<ProductListDto> productListDtoList = new ArrayList<>();

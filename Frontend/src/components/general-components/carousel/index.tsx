@@ -11,9 +11,10 @@ import "./styles.scss";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { isFeature } from "../../../states/feature-state";
+import IProduct from "../../../models/product/product-interface";
 
 type PropType = {
-  products: String[];
+  products: IProduct[];
   options?: EmblaOptionsType;
 };
 

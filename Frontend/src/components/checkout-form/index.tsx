@@ -4,6 +4,8 @@ import Modal from "../general-components/modal/"; // Asegúrate de importar el c
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { cart } from "../../states/cart-state";
 
 const CheckOutForm: React.FC = () => {
   const [address1, setAddress1] = useState<string>("");
@@ -22,6 +24,7 @@ const CheckOutForm: React.FC = () => {
   const [isValidCard, setIsValidCard] = useState<boolean>(false);
   const [displayValue, setDisplayValue] = useState<string>("");
   const [isValidCvv, setisValidCvv] = useState<boolean>(false);
+  const [cartList] = useRecoilState(cart);
 
   const navigate = useNavigate();
 
@@ -75,6 +78,7 @@ const CheckOutForm: React.FC = () => {
             cardHolderName: cardHolderName,
             cardExpiryDate: expirationDate,
             cardCVV: cvv,
+            totalPrice: totalAmount,
           },
           {
             headers: {
@@ -82,7 +86,7 @@ const CheckOutForm: React.FC = () => {
             },
           }
         )
-        .then(function (response) {
+        .then(function () {
           notification();
         })
         .catch(function (error) {
@@ -231,6 +235,11 @@ const CheckOutForm: React.FC = () => {
     }
   };
 
+  const totalAmount = cartList.reduce(
+    (total, item) => total + item.products.price * item.quantity,
+    0
+  );
+
   return (
     <>
       <div>
@@ -304,49 +313,49 @@ const CheckOutForm: React.FC = () => {
                       Select province
                     </option>
                     <option
-                      value="province1"
+                      value="Heredia"
                       aria-label="heredia"
                       className="text-white"
                     >
                       Heredia
                     </option>
                     <option
-                      value="province2"
+                      value="San Jose"
                       aria-label="San Jose"
                       className="text-white"
                     >
                       San Jose
                     </option>
                     <option
-                      value="province3"
+                      value="Cartago"
                       aria-label="Cartago"
                       className="text-white"
                     >
                       Cartago
                     </option>
                     <option
-                      value="province4"
+                      value="Limon"
                       aria-label="Limon"
                       className="text-white"
                     >
                       Limon
                     </option>
                     <option
-                      value="province5"
+                      value="Puntarenas"
                       aria-label="Puntarenas"
                       className="text-white"
                     >
                       Puntarenas
                     </option>
                     <option
-                      value="province6"
+                      value="Guanacaste"
                       aria-label="Guanacaste"
                       className="text-white"
                     >
                       Guanacaste
                     </option>
                     <option
-                      value="province7"
+                      value="Alajuela"
                       aria-label="Alajuela"
                       className="text-white"
                     >

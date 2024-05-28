@@ -21,7 +21,7 @@ const putRequest = (
         },
       }
     )
-    .then(function (response) {
+    .then(function () {
       console.log(newQuantity);
       getItem(setCartList);
     })

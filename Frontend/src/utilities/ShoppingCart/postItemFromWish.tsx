@@ -23,7 +23,7 @@ const postRequestFromWish = (
         },
       }
     )
-    .then(function (response) {
+    .then(function () {
       getItem(setCartList);
     })
     .catch(function (error) {

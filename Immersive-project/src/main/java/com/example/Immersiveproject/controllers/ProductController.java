@@ -1,19 +1,13 @@
 package com.example.Immersiveproject.controllers;
 
-import com.example.Immersiveproject.dtos.ProductImagesDto;
-import com.example.Immersiveproject.dtos.ProductListCategoryDto;
-import com.example.Immersiveproject.dtos.ProductListDto;
-import com.example.Immersiveproject.dtos.ProductListPricesDto;
+import com.example.Immersiveproject.dtos.*;
 import com.example.Immersiveproject.entities.Products;
 import com.example.Immersiveproject.services.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -64,6 +58,12 @@ public class ProductController {
     @GetMapping("/prices")
     public List<ProductListPricesDto> getPrices(){
         return productService.getPrices();
+    }
+
+    @PostMapping
+    public ResponseEntity<Products> addProduct(@RequestBody CreateProductDto createProductDto) {
+        Products newProduct = productService.addProduct(createProductDto);
+        return ResponseEntity.ok(newProduct);
     }
 
 }

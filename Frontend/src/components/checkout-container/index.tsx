@@ -1,28 +1,12 @@
 import { useRecoilState } from "recoil";
 import "./styles.scss";
 import { cart } from "../../states/cart-state";
-import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
 import CheckOutForm from "../checkout-form";
 import CheckOutProducts from "../checkout-products";
 import { Tooltip } from "react-tooltip";
 
 export default function CheckOutContainer() {
   const [cartList] = useRecoilState(cart);
-  const navigate = useNavigate();
-
-  console.log(cartList);
-
-  // useEffect(() => {
-  //   const serializedCart = localStorage.getItem("Cart");
-  //   if (!cartList.length && serializedCart) {
-  //     const myObject: IProduct[] = JSON.parse(serializedCart);
-  //     setCartList(myObject);
-  //   } else {
-  //     console.log("No object found in local storage or cart already populated");
-  //   }
-  // }, [cartList, setCartList]);
-
   const totalItems = cartList.reduce((total, item) => total + item.quantity, 0);
 
   const totalAmount = cartList.reduce(

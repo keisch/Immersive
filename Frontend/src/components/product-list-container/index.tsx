@@ -22,7 +22,7 @@ function ProductList() {
   const [totalPages, setTotalPages] = useState(Number);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [checkboxCategories, setCheckboxCategories] = useState<Category[]>([]);
-  const [prices, setPrices] = useState<string[]>([]);
+  const [prices, setPrices] = useState<IProduct[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [stringSearchProdName, setStringSearchProdName] = useState<string>("");
   const [featureProd, setFeatureProds] = useState(true);

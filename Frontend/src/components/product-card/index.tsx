@@ -10,7 +10,6 @@ import putItem from "../../utilities/ShoppingCart/putItem";
 import postItem from "../../utilities/ShoppingCart/postItem";
 import { wish } from "../../states/wish-state";
 import { useEffect, useState } from "react";
-import putWishListRequest from "../../utilities/WishList/putWishListItem";
 import postWishListRequest from "../../utilities/WishList/postWishListItem";
 import deleteWishListItem from "../../utilities/WishList/deleteWishListItem";
 
@@ -66,20 +65,24 @@ const ProductCard = ({ product }: IProps) => {
             {!isInWishList ? (
               <button
                 className="absolute top-0 right-0 pl-2 pr-3 pt-3 pb-2 z-10 hover:scale-125 transition-transform duration-300"
+                aria-label="add to wishList"
                 onClick={() => addWishList(product)}
               >
                 <FontAwesomeIcon
                   icon={regularHeart}
+                  aria-label="add to wishList"
                   className="text-xl text-[#008248]"
                 />
               </button>
             ) : (
               <button
                 className="absolute top-0 right-0 pl-2 pr-3 pt-3 pb-2 z-10 hover:scale-125 transition-transform duration-300"
+                aria-label="remove from wishList"
                 onClick={() => removeFromWishList(product)}
               >
                 <FontAwesomeIcon
                   icon={faHeart}
+                  aria-label="remove from wishList"
                   className="text-xl text-[#008248]"
                 />
               </button>

@@ -3,7 +3,7 @@ import { Slider } from "@nextui-org/react";
 import IProduct from "../../models/product/product-interface";
 
 interface PriceSliderProps {
-  products: String[];
+  products: IProduct[];
   handleSelectedPriceRange: (priceRange: number[]) => void;
   handleResetPagination: () => void;
 }

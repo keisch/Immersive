@@ -30,7 +30,7 @@ const CartProducts: React.FC<CartProductsProps> = ({
           <h2 className="text-white text-2xl font-semibold font-[Open Sans]">
             {item.products.name}
           </h2>
-          <h3 className="hidden  text-lg text-[#8f8f8f] sm:block">
+          <h3 className="hidden  text-lg text-[#b2b0b0] sm:block">
             {item.products.summary}
           </h3>
           <h3 className="font-bold text-lg text-[#00d878]">
@@ -54,7 +54,7 @@ const CartProducts: React.FC<CartProductsProps> = ({
         </div>
         <div className="flex w-auto text-right justify-end">
           <FontAwesomeIcon
-            className="text-white bg-[#008248] p-2 rounded-lg text-lg"
+            className="text-white bg-[#008248] p-2 rounded-lg text-lg cursor-pointer"
             icon={faTrashCan}
             onClick={() => deleteItem(item, setCartList)}
           />

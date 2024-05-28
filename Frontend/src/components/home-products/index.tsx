@@ -8,12 +8,13 @@ import { cart } from "../../states/cart-state";
 import getShoppingCart from "../../utilities/ShoppingCart/getItem";
 import getWishList from "../../utilities/WishList/getWishLisrItem";
 import { wish } from "../../states/wish-state";
+import IProduct from "../../models/product/product-interface";
 
 export default function HomeProducts() {
   const options: EmblaOptionsType = { loop: false };
   const [, setCartList] = useRecoilState(cart);
-  const [wishList, setWishList] = useRecoilState(wish);
-  const [productsList, setProductsList] = useState<String[]>([]);
+  const [, setWishList] = useRecoilState(wish);
+  const [productsList, setProductsList] = useState<IProduct[]>([]);
 
   useEffect(() => {
     axios
