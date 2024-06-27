@@ -24,6 +24,10 @@ const ChangeState: React.FC<OrderProps> = ({ item }) => {
     }
   };
 
+  useEffect(() => {
+    setStateId(item.state.id);
+  }, []);
+
   const handleStateChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     const newStateId = parseInt(e.target.value);
     setStateId(newStateId);
@@ -68,12 +72,10 @@ const ChangeState: React.FC<OrderProps> = ({ item }) => {
           <select
             className="font-bold text-center bg-[#6e6e6e] text-md w-[120px] text-sm text-white rounded-md focus:outline-none focus:outline-2 focus:outline-[#008248]"
             aria-label="Select state"
+            // value={stateId !== undefined ? stateId : ""}
             value={stateId !== undefined ? stateId : ""}
             onChange={handleStateChange}
           >
-            <option value={item.state.id} disabled>
-              {item.state.name}
-            </option>
             <option value={1}>PENDING</option>
             <option value={2}>COMPLETED</option>
             <option value={3}>CANCELLED</option>
